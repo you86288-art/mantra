@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Hana's Mantra · 나의 치유 만트라</title>
+<link rel="preconnect" href="https://cdn.jsdelivr.net">
+<link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#faf6ec; --bg2:#f4ecd8; --card:#fffdf7; --ink:#3d3428; --ink-soft:#6f6353;
+  --gold:#b08d57; --gold-deep:#9c7836; --line:rgba(176,141,87,.28);
+  --orb:#e6d3ae; --orb-glow:rgba(176,141,87,.35);
+  --serif:'Gowun Batang', serif; --sans:'Pretendard', sans-serif;
+}
+body.night{
+  --bg:#141626; --bg2:#1b1e33; --card:#1e2138; --ink:#e9e4d6; --ink-soft:#a49d8d;
+  --gold:#cfae74; --gold-deep:#e0c48c; --line:rgba(207,174,116,.25);
+  --orb:#3a3f63; --orb-glow:rgba(207,174,116,.30);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  font-family:var(--serif); background:var(--bg); color:var(--ink);
+  transition:background .8s ease,color .8s ease;
+  min-height:100vh; line-height:1.85; word-break:keep-all;
+}
+.wrap{max-width:640px;margin:0 auto;padding:28px 22px 90px}
+
+/* top bar */
+.topbar{display:flex;justify-content:space-between;align-items:center;margin-bottom:38px}
+.streak{font-family:var(--sans);font-size:.78rem;letter-spacing:.04em;color:var(--ink-soft)}
+.toggle{display:flex;border:1px solid var(--line);border-radius:999px;overflow:hidden;font-family:var(--sans)}
+.toggle button{
+  border:0;background:transparent;color:var(--ink-soft);padding:7px 16px;font-size:.8rem;
+  cursor:pointer;transition:.3s;font-family:var(--sans)
+}
+.toggle button.on{background:var(--gold);color:var(--bg);font-weight:600}
+
+/* hero */
+.hero{text-align:center;margin-bottom:14px}
+.hero .stars{color:var(--gold);letter-spacing:.6em;font-size:.85rem;margin-bottom:18px}
+.hero h1{font-size:1.9rem;font-weight:700;letter-spacing:.02em;margin-bottom:6px}
+.hero .sub{font-family:var(--sans);font-size:.8rem;letter-spacing:.42em;color:var(--gold-deep);margin-bottom:26px}
+.hero .intro{font-size:.98rem;color:var(--ink-soft);line-height:2.05}
+.hero .intro em{font-style:normal;color:var(--ink)}
+
+/* breathing orb */
+.breath{display:flex;flex-direction:column;align-items:center;margin:40px 0 46px}
+.orb{
+  width:74px;height:74px;border-radius:50%;
+  background:radial-gradient(circle at 38% 34%, var(--card), var(--orb));
+  box-shadow:0 0 0 0 var(--orb-glow);
+  animation:breathe 10s ease-in-out infinite;
+}
+@keyframes breathe{
+  0%{transform:scale(.82);box-shadow:0 0 0 0 var(--orb-glow)}
+  40%{transform:scale(1.12);box-shadow:0 0 46px 10px var(--orb-glow)}
+  100%{transform:scale(.82);box-shadow:0 0 0 0 var(--orb-glow)}
+}
+@media (prefers-reduced-motion:reduce){.orb{animation:none}}
+.breath .hint{font-family:var(--sans);font-size:.75rem;letter-spacing:.14em;color:var(--ink-soft);margin-top:16px}
+
+/* core mantra */
+.core{
+  background:var(--bg2);border:1px solid var(--line);border-radius:4px;
+  padding:36px 26px;text-align:center;margin-bottom:52px;position:relative;
+}
+.core::before{content:'매 일 의 핵 심 만 트 라';position:absolute;top:-11px;left:50%;transform:translateX(-50%);
+  background:var(--bg);padding:0 14px;font-family:var(--sans);font-size:.72rem;letter-spacing:.3em;color:var(--gold-deep)}
+.core p{font-size:1.08rem;line-height:2.35}
+.core .note{font-family:var(--sans);font-size:.75rem;color:var(--ink-soft);margin-top:20px;letter-spacing:.05em}
+
+/* sections */
+.sec{margin-bottom:44px}
+.sec .eyebrow{font-family:var(--sans);font-size:.74rem;letter-spacing:.26em;color:var(--gold-deep);margin-bottom:6px}
+.sec h2{font-size:1.28rem;font-weight:700;letter-spacing:.14em;margin-bottom:14px}
+.sec .lead{font-size:.92rem;color:var(--ink-soft);margin-bottom:18px;line-height:2}
+.sec .lines{border-left:2px solid var(--gold);padding:6px 0 6px 20px}
+.sec .lines p{margin-bottom:14px;font-size:1.01rem}
+.sec .lines p:last-child{margin-bottom:0}
+.sec .caution{font-family:var(--sans);font-size:.78rem;color:var(--ink-soft);margin-top:16px;line-height:1.8;
+  background:var(--bg2);padding:12px 16px;border-radius:4px}
+
+/* usage details */
+details{border:1px solid var(--line);border-radius:4px;margin-bottom:12px;background:var(--card)}
+summary{cursor:pointer;padding:15px 18px;font-family:var(--sans);font-size:.9rem;font-weight:600;letter-spacing:.03em;list-style:none;display:flex;justify-content:space-between;align-items:center}
+summary::after{content:'+';color:var(--gold);font-size:1.1rem;transition:.25s}
+details[open] summary::after{transform:rotate(45deg)}
+details .body{padding:0 18px 16px;font-size:.94rem;color:var(--ink-soft);line-height:2}
+details .body em{font-style:normal;color:var(--ink)}
+
+.closing{text-align:center;margin-top:64px;color:var(--ink-soft);font-size:.98rem;line-height:2.2}
+.closing .stars{color:var(--gold);letter-spacing:.6em;margin-top:22px;font-size:.8rem}
+
+.mode{display:none}
+.mode.show{display:block;animation:fadein .7s ease}
+@keyframes fadein{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="topbar">
+    <div class="streak" id="streak"></div>
+    <div class="toggle">
+      <button id="btnDay" onclick="setMode('day')">☀ 아침</button>
+      <button id="btnNight" onclick="setMode('night')">🌙 밤</button>
+    </div>
+  </div>
+
+  <!-- ═══════════ MORNING ═══════════ -->
+  <div class="mode" id="day">
+    <div class="hero">
+      <div class="stars">✦ ✦ ✦</div>
+      <h1>Hana's Mantra</h1>
+      <div class="sub">나 의 치 유 만 트 라</div>
+      <p class="intro">
+        이 문장들은 나를 다그치는 말이 아니라,<br>
+        나를 안전한 자리로 데려오는 말이다.<br><br>
+        신경계가 안정되면 — 집중력, 행동력, 실력이 따라온다.<br>
+        나의 일은 몸과 호흡을 단련하여 에너지를 정렬하는 것까지.<br>
+        그다음은, <em>내 안의 무한한 우주에 내맡긴다.</em>
+      </p>
+    </div>
+
+    <div class="breath">
+      <div class="orb"></div>
+      <div class="hint">들숨 4초 · 날숨 6초 — 원과 함께 세 번</div>
+    </div>
+
+    <div class="core">
+      <p>
+        나는 지금, 안전하다.<br>
+        나는 호흡으로 나를 정렬한다.<br>
+        내 안에 우주와 무한한 가능성이 있다.<br>
+        나는 원하는 가능태를 선택하고,<br>
+        지금 이 하나에 몰입한다.<br>
+        결과는 내맡긴다.<br>
+        나는 이미, 충분하다.
+      </p>
+      <div class="note">일곱 문장, 일곱 호흡. 외우려 하지 말고 — 호흡에 실어, 몸으로 스며들게.</div>
+    </div>
+
+    <div class="sec">
+      <div class="eyebrow">하나 · 안전</div>
+      <h2>지금, 여기, 안전</h2>
+      <p class="lead">모든 것의 시작은 안전이다. 불안이 올라올 때, 가장 먼저 이 문장으로 돌아온다.</p>
+      <div class="lines">
+        <p>나는 지금, 여기, 안전하다.</p>
+        <p>위급한 일은 일어나지 않았다. 나의 몸은 쉬어도 된다.</p>
+        <p>감정은 제거할 대상이 아니라, 이해받고 싶은 신호다.</p>
+        <p>나는 파도가 아니라, 파도를 바라보는 바다다.</p>
+        <p>불안은 나의 적이 아니라, 나를 지키려 애써온 오래된 친구다. — 이제 내가 안아준다.</p>
+        <p>들숨에 안전을 받아들이고, 날숨에 어깨의 긴장을 내려놓는다.</p>
+        <p>들숨에 지금 이 순간으로 돌아오고, 날숨에 과거와 미래를 흘려보낸다.</p>
+      </div>
+    </div>
+
+    <div class="sec">
+      <div class="eyebrow">둘 · 뿌리</div>
+      <h2>정렬이 나의 일이다</h2>
+      <p class="lead">나무가 뿌리에 안정감을 맡기듯, 나는 몸과 호흡에 나를 맡긴다. 에너지 정렬 — 그것이 나의 유일한 할 일이다.</p>
+      <div class="lines">
+        <p>몸이 먼저다. 신경계가 먼저다. 안전이 먼저다.</p>
+        <p>나는 매일 나의 몸과 호흡을 단련한다.</p>
+        <p>호흡이 고요해지면, 에너지가 정렬된다. 에너지가 정렬되면, 삶이 정렬된다.</p>
+        <p>결과는 나의 일이 아니다. 정렬이 나의 일이다.</p>
+        <p>나는 거창한 목표가 아니라, 작은 반복을 신뢰한다.</p>
+        <p>들숨에 땅으로부터 안정과 힘을 받아들이고, 날숨에 몸 구석구석의 힘을 뺀다.</p>
+      </div>
+    </div>
+
+    <div class="sec">
+      <div class="eyebrow">셋 · 중심</div>
+      <h2>나는 내 배의 항해사다</h2>
+      <p class="lead">타인의 인정이 아니라, 나의 경험과 행동으로 나를 믿는다. 확신은 밖에서 오지 않는다.</p>
+      <div class="lines">
+        <p>나는 사랑받고 자란 사람이다. 나는 이미 충분하다.</p>
+        <p>나는 파도에 휩쓸리는 사람이 아니라, 내 배의 항해사다.</p>
+        <p>나는 나의 직관과 섬세함을 신뢰한다. 그것은 약점이 아니라 나의 지혜다.</p>
+        <p>나의 행동은 의지 부족이 아니라, 나를 지켜온 패턴이었다. 이제 나는 새로운 패턴을 선택한다.</p>
+        <p>나는 매일, 작은 행동으로 나에 대한 믿음을 쌓는다.</p>
+      </div>
+    </div>
+
+    <div class="sec">
+      <div class="eyebrow">넷 · 우주</div>
+      <h2>가능태를 선택한다</h2>
+      <p class="lead">텅 비어 있으면서도 모든 것을 창조하는 우주가, 이미 내 가슴 안에서 빛나고 있다. 모든 가능태는 이미 존재한다 — 나는 그저 선택할 뿐이다.</p>
+      <div class="lines">
+        <p>내 안에 우주가 있다. 무한한 가능성이 지금도 내 가슴에서 빛나고 있다.</p>
+        <p>모든 가능태는 이미 존재한다. 나는 원하는 가능태를 선택한다.</p>
+        <p>나는 결핍에서 갈구하지 않고, 충만에서 그린다.</p>
+        <p>나는 숫자가 아니라 느낌을 그린다 — 이미 평온하고, 자유롭고, 풍요로운 나를.</p>
+        <p>바라보는 대로 세상은 물든다. 나는 사랑과 풍요를 바라본다.</p>
+        <p>들숨에 가슴속 무한한 우주를 느끼고, 날숨에 한계라는 생각을 내려놓는다.</p>
+      </div>
+      <div class="caution">※ 시각화 중 가슴이 조여오면 — 그것은 집착의 신호. 멈추고, '하나'와 '둘'의 문장으로 돌아가 다시 이완한 뒤에 그린다.</div>
+    </div>
+
+    <div class="sec">
+      <div class="eyebrow">다섯 · 몰입</div>
+      <h2>안정 위에서 몰입은 저절로 온다</h2>
+      <p class="lead">몰입은 쥐어짜서 만드는 것이 아니다. 안정된 신경계 위에서, 저절로 피어나는 것이다.</p>
+      <div class="lines">
+        <p>나는 지금, 이 하나에만 존재한다.</p>
+        <p>천 가지 생각이 아니라, 눈앞의 한 걸음. 그것이 나의 전부다.</p>
+        <p>완벽이 아니라 완료. 나는 시작하고, 작게 끝내고, 다시 시작한다.</p>
+        <p>몰입은 나의 자연 상태다. 나는 그저 방해물을 내려놓을 뿐이다.</p>
+      </div>
+    </div>
+
+    <div class="sec">
+      <div class="eyebrow">여섯 · 내맡김</div>
+      <h2>탁, 하고 놓아버린다</h2>
+      <p class="lead">하나하나 통제하지 않아도 괜찮다. 나의 일은 정렬까지 — 그다음은 우주의 일이다.</p>
+      <div class="lines">
+        <p>나는 필요한 행동을 하되, 결과는 내려놓는다.</p>
+        <p>우주는 이미 가장 좋은 길을 알고 있다. 나는 탁, 하고 내맡긴다.</p>
+        <p>힘을 뺄수록, 나의 삶은 가장 좋은 방향으로 펼쳐진다.</p>
+        <p>나는 애쓰는 춤을 멈추고, 흐름의 춤에 나를 맡긴다.</p>
+        <p>생각과 감정은 가지 사이를 지나가는 바람이다. 나는 오고 감을 허용한다.</p>
+        <p>들숨에 우주와 하나 되고, 날숨에 통제하려는 마음을 내려놓는다.</p>
+        <p>들숨에 믿음을 받아들이고, 날숨에 두려움을 흘려보낸다.</p>
+      </div>
+    </div>
+
+    <div class="sec">
+      <div class="eyebrow">사용법</div>
+      <h2>저장이 아니라, 재노출과 반복</h2>
+      <p class="lead">만트라는 읽는 것이 아니라, 되뇌는 것이다. 길게 한 번보다, 짧게 자주 — 그것이 신경계를 바꾼다. 1분이면 충분하다.</p>
+      <details>
+        <summary>아침 · 눈 뜨자마자</summary>
+        <div class="body">일어나 앉아 세 번 깊이 호흡하고, '핵심 만트라' 일곱 문장을 호흡에 실어 되뇐다. <em>오늘 나의 일은 정렬까지</em> — 라고 하루의 방향을 정한다.</div>
+      </details>
+      <details>
+        <summary>트레이딩 전 · 차트 앞에서</summary>
+        <div class="body">"나는 지금 안전하다. 결과는 나의 일이 아니다, 정렬이 나의 일이다." — 가슴이 조급하면 진입하지 않는다. <em>몸이 평온할 때만 실행한다. 몸의 상태가 나의 신호등이다.</em></div>
+      </details>
+      <details>
+        <summary>불안 · 과부하가 올 때</summary>
+        <div class="body">'하나 · 안전'의 문장으로만 돌아간다. 해결은 나중, 안정이 먼저. 날숨을 들숨보다 길게 하며 <em>"나는 지금, 여기, 안전하다"</em>를 세 번 되뇐다.</div>
+      </details>
+      <details>
+        <summary>시각화 · 명상 전</summary>
+        <div class="body">'하나~둘'로 충분히 이완한 뒤에만 '넷 · 우주'로 넘어간다. 숫자가 아니라 느낌을 그린다. 가슴이 조이면 집착의 신호 — 멈추고 다시 이완한다.</div>
+      </details>
+      <details>
+        <summary>밤 · 잠들기 전</summary>
+        <div class="body">"나는 필요한 행동을 했고, 결과는 내맡긴다. 나는 이미 충분하다." — 오늘을 평가하지 않고, 놓아버리고 잠든다.</div>
+      </details>
+    </div>
+
+    <div class="closing">
+      마음이 빛나면 삶이 빛난다.<br>
+      오늘도 나는, 내 안의 별을 밝힌다.
+      <div class="stars">✦ ✦ ✦</div>
+    </div>
+  </div>
+
+  <!-- ═══════════ NIGHT ═══════════ -->
+  <div class="mode" id="night-mode">
+    <div class="hero">
+      <div class="stars">🌙</div>
+      <h1>Night Mantra</h1>
+      <div class="sub">잠 들 기 전 치 유 만 트 라</div>
+      <p class="intro">
+        「나는 이제 삶에게 맡긴다」<br><br>
+        하루의 끝, 애씀을 내려놓고<br>
+        몸에게, 호흡에게, 삶에게 나를 맡기는 시간.<br><br>
+        내가 자는 동안에도 —<br>
+        <em>몸은 회복하고, 마음은 정리되고, 새로운 연결이 만들어진다.</em>
+      </p>
+    </div>
+
+    <div class="breath">
+      <div class="orb"></div>
+      <div class="hint">날숨을 길게 — 원이 작아질 때 함께 내려놓기</div>
+    </div>
+
+    <div class="sec">
+      <div class="eyebrow">🌙 내맡김</div>
+      <h2>나는 이제 삶에게 맡긴다</h2>
+      <div class="lines">
+        <p>오늘 하루도 충분했다. 나는 더 애쓰지 않아도 된다.</p>
+        <p>나는 이제 몸에게, 호흡에게, 삶에게 나를 맡긴다.</p>
+        <p>오늘 내가 심은 씨앗은 보이지 않는 곳에서도 자라고 있다.</p>
+        <p>나는 잠들지만, 생명은 멈추지 않는다.</p>
+      </div>
+    </div>
+
+    <div class="sec">
+      <div class="eyebrow">🌌 가능성</div>
+      <h2>가능성은 나를 기다리고 있다</h2>
+      <div class="lines">
+        <p>나는 무한한 가능성 속에 존재한다.</p>
+        <p>내 안에는 아직 펼쳐지지 않은 수많은 미래가 있다.</p>
+        <p>나는 내일도 그 가능성 가운데 하나를 선택할 것이다.</p>
+        <p>나는 조급하지 않다. 가능성은 나를 기다리고 있다.</p>
+      </div>
+    </div>
+
+    <div class="sec">
+      <div class="eyebrow">🌿 신경계 회복</div>
+      <h2>오늘 밤은 회복하는 시간</h2>
+      <div class="lines">
+        <p>오늘도 고마웠어. 내 몸아. 오늘도 나를 지켜줘서 고마워.</p>
+        <p>이제는 경계를 내려놓아도 괜찮아. 지금은 안전하다.</p>
+        <p>오늘 밤은 회복하는 시간이다.</p>
+        <p>세포 하나하나가 평온을 기억한다.</p>
+      </div>
+    </div>
+
+    <div class="sec">
+      <div class="eyebrow">🌊 내려놓음</div>
+      <h2>오늘은 여기까지면 충분하다</h2>
+      <div class="lines">
+        <p>나는 통제를 내려놓는다.</p>
+        <p>내가 붙잡았던 걱정도, 내일 해야 할 일도, 잠시 내려놓는다.</p>
+        <p>오늘은 여기까지면 충분하다.</p>
+        <p>지금 이 순간, 아무것도 해결하지 않아도 된다.</p>
+        <p>삶은 내가 자는 동안에도 흐르고 있다.</p>
+      </div>
+    </div>
+
+    <div class="sec">
+      <div class="eyebrow">🌠 자기확신</div>
+      <h2>깊게 뿌리내리는 나무</h2>
+      <div class="lines">
+        <p>나는 내 속도를 믿는다. 나는 내 길을 믿는다.</p>
+        <p>나는 내 몸을 믿는다. 나는 내 호흡을 믿는다.</p>
+        <p>나는 내가 되어가는 과정을 믿는다.</p>
+        <p>급하게 피는 꽃보다, 깊게 뿌리내리는 나무가 되겠다.</p>
+      </div>
+    </div>
+
+    <div class="sec">
+      <div class="eyebrow">🌍 연결</div>
+      <h2>나는 혼자가 아니다</h2>
+      <div class="lines">
+        <p>나는 우주와 분리되어 있지 않다. 나는 자연의 일부다.</p>
+        <p>숨을 들이쉬면 세상이 나에게 들어오고, 숨을 내쉬면 나는 세상과 연결된다.</p>
+        <p>나는 혼자가 아니다. 나는 거대한 생명의 흐름 속에 있다.</p>
+      </div>
+    </div>
+
+    <div class="sec">
+      <div class="eyebrow">🔥 창조자</div>
+      <h2>창조성은 나를 향해 흐른다</h2>
+      <div class="lines">
+        <p>내일도 새로운 아이디어가 찾아올 것이다. 새로운 연결이 만들어질 것이다.</p>
+        <p>나는 억지로 찾지 않는다. 나는 열린 마음으로 받아들인다.</p>
+        <p>창조성은 언제나 나를 향해 흐르고 있다.</p>
+      </div>
+    </div>
+
+    <div class="sec">
+      <div class="eyebrow">🌙 잠재의식</div>
+      <h2>평온은 나의 새로운 기본값</h2>
+      <div class="lines">
+        <p>오늘 나의 몸은 더 안전함을 배운다.</p>
+        <p>오늘 나의 마음은 더 평온함을 배운다.</p>
+        <p>오늘 나의 뇌는 새로운 길을 만든다.</p>
+        <p>나는 평온을 반복한다. 평온은 나의 새로운 기본값이 된다.</p>
+      </div>
+    </div>
+
+    <div class="sec">
+      <div class="eyebrow">🌱 치유 선언문</div>
+      <h2>나는 매일 나 자신이 되어간다</h2>
+      <div class="lines">
+        <p>나는 고장 난 사람이 아니다. 나는 회복하는 사람이다.</p>
+        <p>나는 부족한 사람이 아니다. 나는 성장하는 사람이다.</p>
+        <p>나는 불안한 사람이 아니다. 나는 안전을 배우는 사람이다.</p>
+        <p>나는 완성되어야 하는 사람이 아니다. 나는 매일 조금씩 나 자신이 되어가는 사람이다.</p>
+      </div>
+    </div>
+
+    <div class="sec">
+      <div class="eyebrow">🧭 나의 인생 철학</div>
+      <div class="lines">
+        <p>나는 결과를 만드는 사람이 아니다.</p>
+        <p>나는 오늘의 몸과 호흡을 정렬하는 사람이다.</p>
+        <p>나머지는 삶이 피워낸다.</p>
+      </div>
+    </div>
+
+    <div class="core">
+      <p>
+        오늘도 고마웠어.<br>
+        나는 충분했다. 나는 안전하다.<br><br>
+        내 몸은 회복하는 법을 안다.<br>
+        내 호흡은 나를 평온으로 이끈다.<br><br>
+        나는 모든 것을 통제하지 않는다.<br>
+        나는 삶을 신뢰한다.<br>
+        나는 가능성을 신뢰한다.<br>
+        나는 나 자신을 신뢰한다.<br><br>
+        내가 자는 동안에도 나의 몸은 회복한다.<br>
+        내가 자는 동안에도 나의 마음은 정리된다.<br>
+        내가 자는 동안에도 새로운 연결이 만들어진다.<br><br>
+        나는 평온 속에서 잠든다.<br>
+        내일의 나는 오늘보다 조금 더 자유롭다.<br>
+        그리고 그것이면 충분하다.
+      </p>
+      <div class="note">✨ 마지막 1분 — 잠들기 직전</div>
+    </div>
+
+    <div class="closing">
+      <div class="stars">✦ ✦ ✦</div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+function setMode(m){
+  const night = m==='night';
+  document.body.classList.toggle('night', night);
+  document.getElementById('day').classList.toggle('show', !night);
+  document.getElementById('night-mode').classList.toggle('show', night);
+  document.getElementById('btnDay').classList.toggle('on', !night);
+  document.getElementById('btnNight').classList.toggle('on', night);
+  window.scrollTo({top:0});
+}
+// 시간대 자동 감지: 오후 6시~새벽 4시 → 밤 모드
+const h = new Date().getHours();
+setMode((h >= 18 || h < 4) ? 'night' : 'day');
+
+// 조용한 연속 기록 (localStorage)
+(function(){
+  try{
+    const today = new Date().toISOString().slice(0,10);
+    const data = JSON.parse(localStorage.getItem('mantra_streak')||'{}');
+    if(data.last !== today){
+      const y = new Date(Date.now()-86400000).toISOString().slice(0,10);
+      data.count = (data.last === y) ? (data.count||0)+1 : 1;
+      data.last = today;
+      localStorage.setItem('mantra_streak', JSON.stringify(data));
+    }
+    if(data.count > 1){
+      document.getElementById('streak').textContent = '✦ ' + data.count + '일째, 나에게 돌아오는 중';
+    }
+  }catch(e){}
+})();
+</script>
+</body>
+</html>
