@@ -97,6 +97,13 @@ details .body em{font-style:normal;color:var(--ink)}
 .mode{display:none}
 .mode.show{display:block;animation:fadein .7s ease}
 @keyframes fadein{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.hide{display:none!important}
+.subtabs{display:flex;justify-content:center;gap:8px;margin:-16px 0 42px;font-family:var(--sans)}
+.subtabs button{border:1px solid var(--line);background:transparent;color:var(--ink-soft);border-radius:999px;padding:7px 18px;font-size:.8rem;cursor:pointer;font-family:var(--sans);transition:.25s}
+.subtabs button.on{background:var(--bg2);border-color:var(--gold);color:var(--gold-deep);font-weight:600}
+.lines.num{counter-reset:n}
+.lines.num p{counter-increment:n;padding-left:2px}
+.lines.num p::before{content:counter(n);color:var(--gold);font-family:var(--sans);font-size:.72rem;margin-right:12px;vertical-align:2px}
 </style>
 </head>
 <body>
@@ -130,6 +137,12 @@ details .body em{font-style:normal;color:var(--ink)}
       <div class="hint">들숨 4초 · 날숨 6초 — 원과 함께 세 번</div>
     </div>
 
+    <div class="subtabs">
+      <button class="on" onclick="setTab('day',0)">치유 만트라</button>
+      <button onclick="setTab('day',1)">엔진 가동</button>
+    </div>
+
+    <div id="day-a">
     <div class="core">
       <p>
         나는 지금, 안전하다.<br>
@@ -228,6 +241,29 @@ details .body em{font-style:normal;color:var(--ink)}
     </div>
 
     <div class="sec">
+      <div class="eyebrow">아침 루틴</div>
+      <h2>빛의 그릇으로 하루를 연다</h2>
+      <p class="lead">만트라가 '말'이라면, 이 루틴은 '몸'이다. 타인의 파동에 휩쓸리기 전에, 나의 고유한 진동수를 먼저 세팅한다.</p>
+      <details>
+        <summary>① 눈 뜨자마자 · 빛의 선언 (3분)</summary>
+        <div class="body">침대에서 일어나기 전, 나의 몸을 빛의 그릇으로 선언한다. <em>"나는 지금 이 순간, 무한한 빛과 사랑의 에너지 그 자체로 존재한다."</em> — 소리 내어 말하며, 발끝부터 머리끝까지 그 빛이 차오르는 감각을 3분간 그린다.</div>
+      </details>
+      <details>
+        <summary>② 호흡 · 요가 — 채우고, 비운다</summary>
+        <div class="body">단전호흡 — 들숨에 <em>우주의 풍요가 내 안으로 들어오고</em>, 날숨에 <em>낡은 죄책감과 결핍이 연기처럼 사라진다.</em><br><br>요가는 비둘기 자세. 골반의 긴장을 풀어 억눌린 에너지를 해방하고, 스스로를 귀하게 대접하는 감각을 깨운다.</div>
+      </details>
+      <details>
+        <summary>③ 미래 시점의 일기</summary>
+        <div class="body">'이미 독립하여 성공한 나'의 시점에서, 현재형으로 쓴다. <em>"오늘도 나는 사람들을 치유했고, 통장에는 풍요가 넘친다."</em> — 관찰자의 시선을 현실로 끌어내리는 닻.</div>
+      </details>
+      <details>
+        <summary>④ 하루 종일 · 심장에 손을 얹고</summary>
+        <div class="body">타인과 함께 있을 때도, 의식적으로 심장에 손을 얹고 속삭인다. <em>"나는 나로서 충분히 완전하다."</em> — 타인에게서 채우려 하지 않는다. 내 안의 빛이 넘쳐흘러 그들에게 전달된다.</div>
+      </details>
+      <div class="caution">※ 시각화 중 가슴이 조여오면 — 집착의 신호. '하나 · 안전'으로 돌아가 이완한 뒤에 다시 그린다.</div>
+    </div>
+
+    <div class="sec">
       <div class="eyebrow">사용법</div>
       <h2>저장이 아니라, 재노출과 반복</h2>
       <p class="lead">만트라는 읽는 것이 아니라, 되뇌는 것이다. 길게 한 번보다, 짧게 자주 — 그것이 신경계를 바꾼다. 1분이면 충분하다.</p>
@@ -258,6 +294,31 @@ details .body em{font-style:normal;color:var(--ink)}
       오늘도 나는, 내 안의 별을 밝힌다.
       <div class="stars">✦ ✦ ✦</div>
     </div>
+    </div><!-- /day-a -->
+
+    <div id="day-b" class="hide">
+      <div class="sec">
+        <div class="eyebrow">아침 · 에너지</div>
+        <h2>엔진 가동과 직관의 정렬</h2>
+        <p class="lead">눈을 뜨자마자 — 타인의 리듬이 들어오기 전에, 나의 엔진과 직관을 먼저 정렬한다.</p>
+        <div class="lines num">
+          <p>나는 오늘 내 천골이 기쁘게 반응하는 일에만 나의 귀한 에너지를 쏟는다.</p>
+          <p>나는 6라인의 롤모델로서 오늘 하루 가장 고귀하고 당당하게 걷는다.</p>
+          <p>나는 오늘 만나는 모든 상황에서 나를 위한 최선의 선택을 직관적으로 알아차린다.</p>
+          <p>나는 타인의 기대라는 펜듈럼에 휘둘리지 않고 오직 나의 리듬으로 시작한다.</p>
+          <p>나의 강력한 아우라는 오늘 나를 돕는 귀인들과 풍요로운 기회들을 자석처럼 끌어당긴다.</p>
+          <p>나는 내 몸의 감각에 집중하며, 오늘 하루 필요한 모든 추진력을 뿌리 센터로부터 공급받는다.</p>
+          <p>나는 오늘 내가 내뱉는 모든 말에 신성한 영향력을 담아 세상을 긍정적으로 도발한다.</p>
+          <p>나는 아무것도 증명할 필요가 없으며, 존재만으로 이미 완벽한 성공의 흐름 속에 있다.</p>
+          <p>나는 오늘 마주할 모든 변화를 3-60 채널의 변혁 에너지로 즐겁게 수용한다.</p>
+          <p>나는 나를 사랑하고 보호하며, 오늘 하루 가장 화려하고 순수하게 나를 표현한다.</p>
+        </div>
+      </div>
+      <div class="closing">
+        열 문장, 열 호흡 — 하나씩, 호흡에 실어서.
+        <div class="stars">✦ ✦ ✦</div>
+      </div>
+    </div><!-- /day-b -->
   </div>
 
   <!-- ═══════════ NIGHT ═══════════ -->
@@ -280,6 +341,12 @@ details .body em{font-style:normal;color:var(--ink)}
       <div class="hint">날숨을 길게 — 원이 작아질 때 함께 내려놓기</div>
     </div>
 
+    <div class="subtabs">
+      <button class="on" onclick="setTab('night',0)">치유 만트라</button>
+      <button onclick="setTab('night',1)">에너지 정화</button>
+    </div>
+
+    <div id="night-a">
     <div class="sec">
       <div class="eyebrow">🌙 내맡김</div>
       <h2>나는 이제 삶에게 맡긴다</h2>
@@ -410,11 +477,42 @@ details .body em{font-style:normal;color:var(--ink)}
     <div class="closing">
       <div class="stars">✦ ✦ ✦</div>
     </div>
+    </div><!-- /night-a -->
+
+    <div id="night-b" class="hide">
+      <div class="sec">
+        <div class="eyebrow">밤 · 에너지</div>
+        <h2>에너지 정화와 신성한 이완</h2>
+        <p class="lead">자기 전 침대에서 — 오늘 흡수한 것을 돌려보내고, 엔진을 깊게 식힌다.</p>
+        <div class="lines num">
+          <p>나는 오늘 외부에서 흡수한 모든 감정과 소음을 우주로 깨끗이 돌려보낸다.</p>
+          <p>나는 오늘 나의 가치를 증명하려 했던 미정의된 하트의 긴장을 완전히 내려놓는다.</p>
+          <p>나는 오늘 하루 치열하게 싸워준 나의 육체와 영혼에게 깊은 감사를 전한다.</p>
+          <p>나는 독립과 해방을 향한 나의 여정이 우주의 완벽한 계획 아래 있음을 신뢰한다.</p>
+          <p>나는 잠든 사이 나의 잠재의식이 '내면 Map' 서비스의 영감을 완성하도록 허용한다.</p>
+          <p>나는 오늘 겪은 모든 갈등을 지혜로 승화시키며, 평온한 안식의 공간으로 들어간다.</p>
+          <p>나는 내일 더 강력하고 맑은 에너지를 쓰기 위해 나의 엔진을 깊게 냉각한다.</p>
+          <p>나는 나의 신성한 가이드와 연결되어 있으며, 꿈속에서도 치유와 정화를 경험한다.</p>
+          <p>나는 나를 힘들게 했던 모든 인연을 빛으로 용서하고 나의 에너지 영역에서 분리한다.</p>
+          <p>나는 지금 이 순간 세상에서 가장 안전하고 평화로운 존재로 깊은 잠에 든다.</p>
+        </div>
+      </div>
+      <div class="closing">
+        내려놓고, 식히고, 잠든다.
+        <div class="stars">✦ ✦ ✦</div>
+      </div>
+    </div><!-- /night-b -->
   </div>
 
 </div>
 
 <script>
+function setTab(p, i){
+  document.getElementById(p+'-a').classList.toggle('hide', i===1);
+  document.getElementById(p+'-b').classList.toggle('hide', i===0);
+  const cont = (p==='day') ? 'day' : 'night-mode';
+  document.querySelectorAll('#'+cont+' .subtabs button').forEach((b,idx)=>b.classList.toggle('on', idx===i));
+}
 function setMode(m){
   const night = m==='night';
   document.body.classList.toggle('night', night);
