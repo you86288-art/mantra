@@ -104,6 +104,84 @@ details .body em{font-style:normal;color:var(--ink)}
 .lines.num{counter-reset:n}
 .lines.num p{counter-increment:n;padding-left:2px}
 .lines.num p::before{content:counter(n);color:var(--gold);font-family:var(--sans);font-size:.72rem;margin-right:12px;vertical-align:2px}
+
+/* 빛의 그릇 · 3분 시각화 */
+.vizbtn{
+  display:block;width:100%;text-align:center;border:1px solid var(--gold);border-radius:4px;
+  background:var(--bg2);color:var(--gold-deep);font-family:var(--sans);font-size:.9rem;font-weight:600;
+  letter-spacing:.06em;padding:14px;margin:4px 0 14px;cursor:pointer;transition:.25s
+}
+.vizbtn:hover{background:var(--gold);color:var(--bg)}
+#viz{
+  position:fixed;inset:0;z-index:99;display:none;flex-direction:column;align-items:center;justify-content:center;
+  background:radial-gradient(ellipse at 50% 110%, #2a2340 0%, #171226 55%, #0d0a18 100%);
+  color:#e9e4d6;text-align:center;padding:24px;
+}
+#viz.on{display:flex;animation:vizfade 1.2s ease}
+@keyframes vizfade{from{opacity:0}to{opacity:1}}
+#vizClose{
+  position:absolute;top:20px;right:22px;background:none;border:1px solid rgba(233,228,214,.3);
+  color:rgba(233,228,214,.7);border-radius:999px;width:38px;height:38px;font-size:1rem;cursor:pointer
+}
+#vizTime{position:absolute;top:29px;left:26px;font-family:var(--sans);font-size:.78rem;letter-spacing:.1em;color:rgba(233,228,214,.5)}
+.vizMantra{font-family:'Gowun Batang',serif;font-size:1.02rem;line-height:2;color:#cfae74;max-width:480px;margin-bottom:26px}
+.vizFigureWrap{position:relative;width:180px;height:260px;margin-bottom:26px}
+.vizGlow{
+  position:absolute;inset:-40px;border-radius:50%;
+  background:radial-gradient(circle, rgba(207,174,116,.28), transparent 70%);
+  animation:vizpulse 10s ease-in-out infinite
+}
+@keyframes vizpulse{0%,100%{transform:scale(.9);opacity:.5}40%{transform:scale(1.1);opacity:1}}
+.vizCaption{font-family:'Gowun Batang',serif;font-size:1.06rem;line-height:2;min-height:3.2em;max-width:440px;transition:opacity .8s}
+.vizCaption.dim{opacity:0}
+.vizHint{font-family:var(--sans);font-size:.74rem;letter-spacing:.14em;color:rgba(233,228,214,.45);margin-top:18px}
+#vizStart,#vizDone{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;background:inherit;padding:24px;z-index:2}
+#vizDone{display:none}
+.vizBig{font-family:'Gowun Batang',serif;font-size:1.25rem;line-height:2.2;color:#e9e4d6;max-width:460px;margin-bottom:30px}
+.vizGo{border:1px solid #cfae74;background:transparent;color:#cfae74;font-family:var(--sans);font-size:.95rem;font-weight:600;letter-spacing:.08em;border-radius:999px;padding:14px 42px;cursor:pointer;transition:.3s}
+.vizGo:hover{background:#cfae74;color:#171226}
+.toggle button{padding:7px 12px}
+/* 홀로그램 & 파티클 */
+.vizHolo{
+  position:absolute;inset:-34px;border-radius:50%;filter:blur(16px);
+  background:conic-gradient(from 0deg,
+    rgba(207,174,116,0), rgba(150,185,255,.28), rgba(228,175,255,.24),
+    rgba(207,174,116,.34), rgba(150,220,205,.22), rgba(207,174,116,0));
+  animation:holoSpin 16s linear infinite;
+}
+@keyframes holoSpin{to{transform:rotate(360deg)}}
+.particle{
+  position:absolute;bottom:8px;width:4px;height:4px;border-radius:50%;
+  background:#f3dfae;box-shadow:0 0 6px rgba(243,223,174,.9);opacity:0;
+  animation:rise linear infinite;
+}
+@keyframes rise{
+  0%{transform:translateY(0) scale(1);opacity:0}
+  12%{opacity:.95}
+  100%{transform:translateY(-250px) scale(.4);opacity:0}
+}
+#vizSound{
+  position:absolute;top:20px;right:70px;background:none;border:1px solid rgba(233,228,214,.3);
+  color:rgba(233,228,214,.7);border-radius:999px;width:38px;height:38px;font-size:.95rem;cursor:pointer
+}
+/* 일기 */
+textarea{
+  width:100%;border:1px solid var(--line);border-radius:4px;background:var(--card);
+  padding:16px;font-family:var(--serif);font-size:1rem;color:var(--ink);line-height:1.9;
+  outline:none;resize:vertical
+}
+textarea:focus{border-color:var(--gold)}
+.diaryRow{display:flex;align-items:center;gap:12px;margin-top:12px}
+.dbtn{
+  border:0;border-radius:999px;background:var(--gold);color:var(--bg);
+  font-family:var(--sans);font-size:.88rem;font-weight:600;padding:11px 24px;cursor:pointer
+}
+.dbtn.ghost{background:transparent;color:var(--ink-soft);border:1px solid var(--line);font-weight:400;font-size:.8rem;padding:9px 18px}
+.dsaved{font-family:var(--sans);font-size:.82rem;color:var(--gold-deep);opacity:0;transition:.5s}
+.dsaved.show{opacity:1}
+#diaryList details{border:1px solid var(--line);border-radius:4px;margin-bottom:10px;background:var(--card)}
+#diaryList summary{cursor:pointer;padding:13px 16px;font-family:var(--sans);font-size:.85rem;letter-spacing:.04em;list-style:none;color:var(--ink-soft)}
+#diaryList .body{padding:0 16px 14px;font-size:.96rem;line-height:2;color:var(--ink)}
 </style>
 </head>
 <body>
@@ -114,6 +192,8 @@ details .body em{font-style:normal;color:var(--ink)}
     <div class="toggle">
       <button id="btnDay" onclick="setMode('day')">☀ 아침</button>
       <button id="btnNight" onclick="setMode('night')">🌙 밤</button>
+      <button id="btnViz" onclick="setMode('viz')">✦ 빛</button>
+      <button id="btnDiary" onclick="setMode('diary')">✎ 일기</button>
     </div>
   </div>
 
@@ -244,6 +324,7 @@ details .body em{font-style:normal;color:var(--ink)}
       <div class="eyebrow">아침 루틴</div>
       <h2>빛의 그릇으로 하루를 연다</h2>
       <p class="lead">만트라가 '말'이라면, 이 루틴은 '몸'이다. 타인의 파동에 휩쓸리기 전에, 나의 고유한 진동수를 먼저 세팅한다.</p>
+      <button class="vizbtn" onclick="vizOpen()">✦ 빛의 그릇 · 3분 시각화 시작하기</button>
       <details>
         <summary>① 눈 뜨자마자 · 빛의 선언 (3분)</summary>
         <div class="body">침대에서 일어나기 전, 나의 몸을 빛의 그릇으로 선언한다. <em>"나는 지금 이 순간, 무한한 빛과 사랑의 에너지 그 자체로 존재한다."</em> — 소리 내어 말하며, 발끝부터 머리끝까지 그 빛이 차오르는 감각을 3분간 그린다.</div>
@@ -502,6 +583,55 @@ details .body em{font-style:normal;color:var(--ink)}
         <div class="stars">✦ ✦ ✦</div>
       </div>
     </div><!-- /night-b -->
+  </div><!-- /night-mode -->
+
+  <!-- ═══════════ 빛의 그릇 탭 ═══════════ -->
+  <div class="mode" id="viz-tab">
+    <div class="hero">
+      <div class="stars">✦</div>
+      <h1>빛의 그릇</h1>
+      <div class="sub">3 분 시 각 화 명 상</div>
+      <p class="intro">
+        타인의 파동에 휩쓸리기 전 —<br>
+        나의 고유한 진동수를 먼저 세팅하는 시간.<br><br>
+        <em>"나는 지금 이 순간,<br>무한한 빛과 사랑의 에너지 그 자체로 존재한다"</em><br><br>
+        발끝부터 머리끝까지, 홀로그램의 빛이 차오르고<br>
+        싱잉볼의 울림이 3분간 함께합니다.
+      </p>
+    </div>
+    <div class="breath"><div class="orb"></div>
+      <div class="hint">소리가 함께 재생돼요 — 이어폰을 추천</div></div>
+    <div style="text-align:center;margin-top:8px">
+      <button class="vizbtn" style="max-width:340px;margin:0 auto" onclick="vizOpen()">✦ 시각화 시작하기 · 3분</button>
+    </div>
+  </div>
+
+  <!-- ═══════════ 미래 시점 일기 탭 ═══════════ -->
+  <div class="mode" id="diary">
+    <div class="hero">
+      <div class="stars">✎</div>
+      <h1>미래 시점의 일기</h1>
+      <div class="sub">이 미 이 루 어 진 오 늘</div>
+      <p class="intro">
+        '이미 독립하여 성공한 나'의 시점에서, <em>현재형으로</em> 쓴다.<br>
+        관찰자의 시선을 현실로 끌어내리는 닻.
+      </p>
+    </div>
+    <div class="sec">
+      <div class="eyebrow">오늘 · <span id="diaryDate"></span></div>
+      <textarea id="diaryText" rows="7" placeholder="오늘도 나는 사람들을 치유했고, 통장에는 풍요가 넘친다…&#10;&#10;(잘 쓰려 하지 말고 — 이미 그렇게 사는 사람의 담담한 하루로)"></textarea>
+      <div class="diaryRow">
+        <button class="dbtn" onclick="diarySave()">오늘의 기록 저장</button>
+        <span class="dsaved" id="diarySaved"></span>
+      </div>
+    </div>
+    <div class="sec">
+      <div class="eyebrow">지난 기록</div>
+      <div id="diaryList"></div>
+      <div class="diaryRow" style="justify-content:flex-end;margin-top:14px">
+        <button class="dbtn ghost" onclick="diaryExport()">전체 백업 (.txt)</button>
+      </div>
+    </div>
   </div>
 
 </div>
@@ -513,13 +643,13 @@ function setTab(p, i){
   const cont = (p==='day') ? 'day' : 'night-mode';
   document.querySelectorAll('#'+cont+' .subtabs button').forEach((b,idx)=>b.classList.toggle('on', idx===i));
 }
+const MODE_EL = {day:'day', night:'night-mode', viz:'viz-tab', diary:'diary'};
+const MODE_BTN = {day:'btnDay', night:'btnNight', viz:'btnViz', diary:'btnDiary'};
 function setMode(m){
-  const night = m==='night';
-  document.body.classList.toggle('night', night);
-  document.getElementById('day').classList.toggle('show', !night);
-  document.getElementById('night-mode').classList.toggle('show', night);
-  document.getElementById('btnDay').classList.toggle('on', !night);
-  document.getElementById('btnNight').classList.toggle('on', night);
+  document.body.classList.toggle('night', m==='night' || m==='viz');
+  for(const k in MODE_EL) document.getElementById(MODE_EL[k]).classList.toggle('show', k===m);
+  for(const k in MODE_BTN) document.getElementById(MODE_BTN[k]).classList.toggle('on', k===m);
+  if(m==='diary') diaryLoad();
   window.scrollTo({top:0});
 }
 // 시간대 자동 감지: 오후 6시~새벽 4시 → 밤 모드
@@ -542,6 +672,204 @@ setMode((h >= 18 || h < 4) ? 'night' : 'day');
     }
   }catch(e){}
 })();
+</script>
+<div id="viz">
+  <button id="vizClose" onclick="vizStop()">✕</button>
+  <button id="vizSound" onclick="vizToggleSound()">🔔</button>
+  <span id="vizTime"></span>
+
+  <div class="vizMantra">"나는 지금 이 순간,<br>무한한 빛과 사랑의 에너지 그 자체로 존재한다"</div>
+
+  <div class="vizFigureWrap">
+    <div class="vizHolo"></div>
+    <div class="vizGlow"></div>
+    <svg viewBox="0 0 180 260" width="180" height="260">
+      <defs>
+        <linearGradient id="lightFill" x1="0" y1="1" x2="0" y2="0">
+          <stop offset="0%" stop-color="#f3dfae"/>
+          <stop offset="100%" stop-color="#cfae74"/>
+        </linearGradient>
+        <clipPath id="figClip">
+          <!-- 좌선한 명상 실루엣 -->
+          <circle cx="90" cy="52" r="26"/>
+          <path d="M90 78
+                   C 64 82, 52 104, 48 132
+                   C 44 158, 34 176, 22 190
+                   C 12 202, 16 216, 34 220
+                   L 146 220
+                   C 164 216, 168 202, 158 190
+                   C 146 176, 136 158, 132 132
+                   C 128 104, 116 82, 90 78 Z"/>
+        </clipPath>
+      </defs>
+      <!-- 어두운 바탕 실루엣 -->
+      <g opacity=".28">
+        <circle cx="90" cy="52" r="26" fill="#e9e4d6"/>
+        <path d="M90 78 C 64 82, 52 104, 48 132 C 44 158, 34 176, 22 190 C 12 202, 16 216, 34 220 L 146 220 C 164 216, 168 202, 158 190 C 146 176, 136 158, 132 132 C 128 104, 116 82, 90 78 Z" fill="#e9e4d6"/>
+      </g>
+      <!-- 차오르는 빛 -->
+      <g clip-path="url(#figClip)">
+        <rect id="lightRect" x="0" y="260" width="180" height="260" fill="url(#lightFill)"/>
+      </g>
+    </svg>
+  </div>
+
+  <div class="vizCaption" id="vizCaption"></div>
+  <div class="vizHint">들숨에 빛을 받아들이고 · 날숨에 몸의 힘을 뺀다</div>
+
+  <div id="vizStart">
+    <div class="vizBig">눈을 감기 전, 한 번만 읽어요.<br><br>"나는 지금 이 순간,<br>무한한 빛과 사랑의 에너지<br>그 자체로 존재한다"<br><br>소리 내어 선언하고 —<br>발끝부터 차오르는 빛을 따라가요.</div>
+    <button class="vizGo" onclick="vizStart()">시작 · 3분</button>
+  </div>
+
+  <div id="vizDone">
+    <div class="vizBig">✦<br><br>빛의 그릇이 완성되었다.<br><br>이 진동수로,<br>오늘 하루를 시작한다.</div>
+    <button class="vizGo" onclick="vizStop()">하루 시작하기</button>
+  </div>
+</div>
+
+<script>
+/* ── 빛의 그릇 · 3분 시각화 ── */
+const VIZ_DUR = 180; // seconds
+const VIZ_PHASES = [
+  [0,   "발끝에서 — 따뜻한 빛이 차오르기 시작한다"],
+  [35,  "다리를 지나, 골반까지 — 천골이 황금빛으로 데워진다"],
+  [75,  "배와 가슴으로 — 심장이 빛으로 가득 찬다"],
+  [115, "어깨의 긴장이 녹고, 목을 지나 — 머리끝까지"],
+  [150, "온몸이 빛의 그릇이다. 나의 진동수가 정렬되었다"]
+];
+let vizTimer = null, vizT0 = 0;
+
+/* ── 싱잉볼 (WebAudio 합성 — 음원 파일·저작권 불필요) ── */
+let AC = null, bowlInt = null, vizMuted = false;
+function bowlStrike(base){
+  if(!AC || vizMuted) return;
+  const t = AC.currentTime;
+  // 기본음 + 배음 + 미세한 맥놀이(detune)로 싱잉볼 질감
+  [[1,0.16],[1.003,0.10],[2.71,0.05],[5.42,0.02]].forEach(([mult,vol])=>{
+    const o = AC.createOscillator(), g = AC.createGain();
+    o.type='sine'; o.frequency.value = base*mult;
+    g.gain.setValueAtTime(0.0001, t);
+    g.gain.exponentialRampToValueAtTime(vol, t+0.04);
+    g.gain.exponentialRampToValueAtTime(0.0001, t+14);
+    o.connect(g).connect(AC.destination);
+    o.start(t); o.stop(t+14);
+  });
+}
+function audioStart(){
+  try{
+    AC = new (window.AudioContext||window.webkitAudioContext)();
+    bowlStrike(196);                       // 시작 타종
+    bowlInt = setInterval(()=>bowlStrike(196), 24000); // 24초마다 울림
+  }catch(e){}
+}
+function audioStop(){
+  if(bowlInt){ clearInterval(bowlInt); bowlInt=null; }
+  if(AC){ try{AC.close();}catch(e){} AC=null; }
+}
+function vizToggleSound(){
+  vizMuted = !vizMuted;
+  document.getElementById('vizSound').textContent = vizMuted ? '🔕' : '🔔';
+}
+
+/* ── 홀로그램 파티클 ── */
+function spawnParticles(){
+  const wrap = document.querySelector('.vizFigureWrap');
+  wrap.querySelectorAll('.particle').forEach(p=>p.remove());
+  for(let i=0;i<16;i++){
+    const s = document.createElement('span');
+    s.className='particle';
+    s.style.left = (8+Math.random()*164)+'px';
+    s.style.animationDuration = (5+Math.random()*6)+'s';
+    s.style.animationDelay = (Math.random()*6)+'s';
+    wrap.appendChild(s);
+  }
+}
+
+function vizOpen(){
+  document.getElementById('viz').classList.add('on');
+  document.getElementById('vizStart').style.display='flex';
+  document.getElementById('vizDone').style.display='none';
+  document.getElementById('lightRect').setAttribute('y', 260);
+  document.getElementById('vizTime').textContent='';
+  document.getElementById('vizCaption').textContent='';
+  spawnParticles();
+}
+function vizStart(){
+  document.getElementById('vizStart').style.display='none';
+  audioStart();
+  vizT0 = Date.now();
+  vizTick();
+  vizTimer = setInterval(vizTick, 250);
+}
+function vizTick(){
+  const t = (Date.now() - vizT0) / 1000;
+  const p = Math.min(t / VIZ_DUR, 1);
+  // 빛: 발끝(220) → 머리끝(20) 위치로 차오름
+  document.getElementById('lightRect').setAttribute('y', 260 - 260 * p);
+  // 남은 시간
+  const left = Math.max(VIZ_DUR - Math.floor(t), 0);
+  document.getElementById('vizTime').textContent =
+    Math.floor(left/60) + ':' + String(left%60).padStart(2,'0');
+  // 단계 문구
+  let cap = VIZ_PHASES[0][1];
+  for(const [at, txt] of VIZ_PHASES){ if(t >= at) cap = txt; }
+  const el = document.getElementById('vizCaption');
+  if(el.textContent !== cap){
+    el.classList.add('dim');
+    setTimeout(()=>{ el.textContent = cap; el.classList.remove('dim'); }, 400);
+  }
+  if(p >= 1){
+    clearInterval(vizTimer); vizTimer = null;
+    if(bowlInt){ clearInterval(bowlInt); bowlInt=null; }
+    bowlStrike(147); // 마침 타종 (낮은 음)
+    setTimeout(()=>{ document.getElementById('vizDone').style.display='flex'; }, 900);
+  }
+}
+function vizStop(){
+  if(vizTimer){ clearInterval(vizTimer); vizTimer = null; }
+  audioStop();
+  document.getElementById('viz').classList.remove('on');
+}
+
+/* ── 미래 시점 일기 (localStorage) ── */
+function diaryKey(){
+  const d = new Date();
+  return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');
+}
+function diaryAll(){ try{ return JSON.parse(localStorage.getItem('future_diary')||'{}'); }catch(e){ return {}; } }
+function esc(s){ return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+function diaryLoad(){
+  const d = diaryAll();
+  document.getElementById('diaryDate').textContent = diaryKey();
+  document.getElementById('diaryText').value = d[diaryKey()] || '';
+  const keys = Object.keys(d).sort().reverse().filter(k=>k!==diaryKey());
+  document.getElementById('diaryList').innerHTML = keys.length
+    ? keys.map(k=>'<details><summary>'+k+'</summary><div class="body">'+esc(d[k]).replace(/\n/g,'<br>')+'</div></details>').join('')
+    : '<p class="lead" style="text-align:left">아직 지난 기록이 없어요. 오늘이 첫 페이지.</p>';
+}
+function diarySave(){
+  const txt = document.getElementById('diaryText').value.trim();
+  const d = diaryAll();
+  if(txt) d[diaryKey()] = txt; else delete d[diaryKey()];
+  localStorage.setItem('future_diary', JSON.stringify(d));
+  const s = document.getElementById('diarySaved');
+  s.textContent = '저장되었어요 ✦'; s.classList.add('show');
+  setTimeout(()=>s.classList.remove('show'), 2000);
+  diaryLoad();
+  document.getElementById('diaryText').value = d[diaryKey()] || '';
+}
+function diaryExport(){
+  const d = diaryAll();
+  const keys = Object.keys(d).sort();
+  if(!keys.length){ alert('아직 기록이 없어요.'); return; }
+  const txt = keys.map(k=>'['+k+']\n'+d[k]).join('\n\n──────────\n\n');
+  const blob = new Blob([txt], {type:'text/plain;charset=utf-8'});
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = '미래시점일기_백업.txt';
+  a.click(); URL.revokeObjectURL(a.href);
+}
 </script>
 </body>
 </html>
